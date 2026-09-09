@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laporan Tugas - Tema Lightning McQueen</title>
+    <!-- Mengambil font balap/tebal dari Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            /* Latar belakang nuansa Lightning McQueen (Merah Balap & Aspal Gelap dengan Aksen Bendera Start) */
+            background-color: #111111;
+            background-image: 
+                linear-gradient(45deg, #1a1a1a 25%, transparent 25%), 
+                linear-gradient(-45deg, #1a1a1a 25%, transparent 25%), 
+                linear-gradient(45deg, transparent 75%, #1a1a1a 75%), 
+                linear-gradient(-45deg, transparent 75%, #1a1a1a 75%);
+            background-size: 40px 40px;
+            background-position: 0 0, 0 20px, 20px -20px, -20px 0px;
+            color: #333;
+            padding: 40px 20px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(239, 68, 68, 0.4);
+            border-top: 8px solid #ef4444; /* Merah McQueen */
+            border-bottom: 8px solid #eab308; /* Kuning Piston Cup */
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 3px dashed #ef4444;
+            padding-bottom: 20px;
+        }
+
+        .header h1 {
+            font-family: 'Racing Sans One', cursive;
+            color: #ef4444;
+            font-size: 42px;
+            letter-spacing: 2px;
+            text-shadow: 3px 3px #111;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            color: #b45309;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .info-box {
+            background: #fffbeb;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            border-left: 6px solid #eab308;
+            border-right: 6px solid #ef4444;
+        }
+
+        .info-item {
+            font-size: 15px;
+            color: #333;
+        }
+
+        .info-item span {
+            font-weight: bold;
+            color: #ef4444;
+        }
+
+        .info-item.full-width {
+            grid-column: span 2;
+        }
+
+        .task-section h2 {
+            font-family: 'Racing Sans One', cursive;
+            font-size: 28px;
+            color: #1d4ed8;
+            margin-bottom: 20px;
+            letter-spacing: 1.5px;
+            border-left: 6px solid #ef4444;
+            padding-left: 12px;
+            margin-top: 35px;
+        }
+
+        .qa-card {
+            background: #fff5f5;
+            border: 2px solid #fed7d7;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+        }
+
+        .qa-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(239, 68, 68, 0.2);
+            border-color: #ef4444;
+        }
+
+        .qa-card.mcqueen-quote {
+            background: #fef2f2;
+            border-left: 6px solid #ef4444;
+            border-right: 2px solid #eab308;
+        }
+
+        .question {
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 12px;
+            font-size: 15px;
+        }
+
+        .answer-box {
+            background: #ffffff;
+            border: 1px solid #f87171;
+            padding: 15px;
+            border-radius: 8px;
+            color: #222;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .answer-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: #ef4444;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            display: block;
+            letter-spacing: 1px;
+        }
+
+        /* Styling Tabel Tema McQueen */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 14px;
+            overflow: hidden;
+            border-radius: 6px;
+        }
+
+        table, th, td {
+            border: 1px solid #f3cbd0;
+        }
+
+        th {
+            background-color: #ef4444;
+            color: white;
+            padding: 10px 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 9px 12px;
+            background-color: #ffffff;
+            color: #333;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #fff1f2;
+        }
+
+        pre {
+            background: #18181b;
+            color: #facc15;
+            padding: 14px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-size: 13px;
+            margin-top: 8px;
+            border-left: 4px solid #ef4444;
+        }
+
+        code {
+            color: #ef4444;
+            font-weight: 600;
+            background: #fee2e2;
+            padding: 2px 5px;
+            border-radius: 4px;
+        }
+
+        pre code {
+            color: #facc15;
+            background: transparent;
+            padding: 0;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 13px;
+            color: #666;
+            border-top: 2px dashed #ef4444;
+            padding-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Judul Utama -->
+        <div class="header">
+            <h1>KA-CHOW! LAPORAN TUGAS MCQUEEN</h1>
+            <p>Mata Pelajaran: Dasar-Dasar Pengembangan Perangkat Lunak dan Gim (DD PPLG)</p>
+        </div>
+
+        <!-- Identitas Siswa -->
+        <div class="info-box">
+            <div class="info-item">Nama: <span id="nama-siswa">Quinsha</span></div>
+            <div class="info-item">Kelas: <span id="kelas-siswa">X PPLG 1</span></div>
+            <div class="info-item full-width">Tanggal: <span id="current-date">09-09-2026</span></div>
+        </div>
+
+        <div class="task-section">
+            
+            <!-- D. APERSEPSI -->
+            <h2>D. Apersepsi</h2>
+            <div class="qa-card">
+                <div class="question">Menurutmu, bagaimana cara menyimpan informasi tersebut di dalam program? Tuliskan dugaanmu!</div>
+                <div class="answer-box">
+                    <span class="answer-label">Jawaban Saya:</span>
+                    Informasi tersebut dapat disimpan menggunakan <strong>variabel</strong> (variable). Variabel berfungsi sebagai penampung data di memori dengan memberikan nama identitas tertentu, contohnya:
+                    <pre>let namaSiswa = "Budi";
+let kelas = "X RPL 1";
+let umur = 15;
+let nilai = 85;
+let jurusan = "PPLG";</pre>
+                </div>
+            </div>
+
+            <!-- E. AKTIVITAS 1 -->
+            <h2>E. Aktivitas 1 - Mengamati</h2>
+            <div class="qa-card">
+                <div class="question">1. Apa yang ditampilkan pada Console?</div>
+                <div class="answer-box">
+                    <span class="answer-label">Jawaban Saya:</span>
+                    Console akan menampilkan teks/nilai berikut secara berurutan:
+                    <pre>Budi
+16
+85</pre>
+                </div>
+            </div>
+            <div class="qa-card">
+                <div class="question">2. Menurutmu, apa fungsi <code>nama</code>, <code>umur</code>, dan <code>nilai</code>?</div>
+                <div class="answer-box">
+                    <span class="answer-label">Jawaban Saya:</span>
+                    Ketiganya berfungsi sebagai nama variabel yang menyimpan data siswa (nama menyimpan teks, umur dan nilai menyimpan angka).
+                </div>
+            </div>
+            <div class="qa-card">
+                <div class="question">3. Apa yang terjadi jika kode <code>console.log(nama);</code> dijalankan?</div>
+                <div class="answer-box">
+                    <span class="answer-label">Jawaban Saya:</span>
+                    Program akan menampilkan isi nilai dari variabel <code>nama</code> ke layar console, yaitu <strong>Budi</strong>.
+                </div>
+            </div>
+            <div class="qa-card">
+                <div class="question">4. Menurut dugaanmu, apa yang dimaksud dengan variable?</div>
+                <div class="answer-box">
+                    <span class="answer-label">Jawaban Saya:</span>
+                    Variabel adalah tempat atau wadah penyimpanan data dalam memori komputer yang diberi nama agar nilainya bisa dipanggil dan digunakan di dalam program.
+                </div>
+            </div>
+
+            <!-- F. AKTIVITAS 2 -->
+            <h2>F. Aktivitas 2 - Mengenal Variable</h2>
+            <div class="qa-card">
+                <div class="question">1. Apa itu Variable dan Bagaimana Anatomi Penulisannya?</div>
+                <div class="answer-box">
+                    <span class="answer-label">Pengertian & Struktur Kode:</span>
+                    Variable dapat dianggap sebagai tempat untuk menyimpan sebuah data agar data tersebut dapat digunakan kembali oleh program.
+                    <br><br>
+                    <strong>Contoh Kode:</strong> <code>let nama = "Andi";</code>
+                    <br><br>
+                    <span class="answer-label">Penjelasan Bagian Kode:</span>
+                    <table>
+                        <tr>
+                            <th>Bagian</th>
+                            <th>Fungsi</th>
+                        </tr>
+                        <tr>
+                            <td><code>let</code></td>
+                            <td>Kata kunci untuk membuat / mendeklarasikan variable</td>
+                        </tr>
+                        <tr>
+                            <td><code>nama</code></td>
+                            <td>Nama identitas variable</td>
+                        </tr>
+                        <tr>
+                            <td><code>=</code></td>
+                            <td>Operator assignment untuk memberikan / memasukkan nilai</td>
+                        </tr>
+                        <tr>
+                            <td><code>"Andi"</code></td>
+                            <td>Nilai atau data yang disimpan di dalam variable</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- G. AKTIVITAS 3 -->
+            <h2>G. Aktivitas 3 - Praktik Membuat Variable</h2>
+            <div class="qa-card">
+                <div class="question">1. Kode Struktur HTML & JavaScript (variable.html)</div>
+                <div class="answer-box">
+                    <span class="answer-label">Isi File Kode:</span>
+                    <pre>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Belajar Variable&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;script&gt;
+    let nama = "Budi";
+    let kelas = "XI RPL 1";
+    let umur = 16;
+
+    console.log(nama);
+    console.log(kelas);
+    console.log(umur);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+                </div>
+            </div>
+
+            <!-- H. AKTIVITAS 4 -->
+            <h2>H. Aktivitas 4 - Eksperimen</h2>
+            <div class="qa-card">
+                <div class="question">1. Apakah hasil pada Console berubah?</div>
+                <div class="answer-box">
+                    <span class="answer-label">Jawaban Saya:</span>
+                    Ya, hasil tampilan di console berubah sesuai dengan data baru yang dimasukkan.
+                </div>
+            </div>
+            <div class="qa-card">
+                <div class="question">2. Bagian kode mana yang kamu ubah?</div>
+                <div class="answer-box">
+                    <span class="answer-label">Jawaban Saya:</span>
+                    Bagian nilai variabel di sebelah kanan tanda sama dengan (<code>=</code>), contohnya mengubah isi teks/string pada <code>let nama</code>, <code>let kelas</code>, dan angka pada <code>let umur</code>.
+                </div>
+            </div>
+            <div class="qa-card">
+                <div class="question">3. Mengapa program dapat menampilkan data yang baru?</div>
+                <div class="answer-box">
+                    <span class="answer-label">Jawaban Saya:</span>
+                    Karena saat nilai variabel diperbarui, memori akan menimpa isi variabel tersebut sehingga perintah <code>console.log()</code> mencetak data paling baru.
+                </div>
+            </div>
+
+            <!-- I. AKTIVITAS 5 -->
+            <h2>I. Aktivitas 5 - Variable Untuk Menyimpan Berbagai Data</h2>
+            <div class="qa-card">
+                <div class="question">1. Identifikasi Jenis Data</div>
+                <div class="answer-box">
+                    <span class="answer-label">Tabel Jenis Data:</span>
+                    <table>
+                        <tr>
+                            <th>Variable</th>
+                            <th>Nilai</th>
+                            <th>Jenis Data</th>
+                        </tr>
+                        <tr>
+                            <td>nama</td>
+                            <td>"Andi"</td>
+                            <td>String (Teks)</td>
+                        </tr>
+                        <tr>
+                            <td>umur</td>
+                            <td>17</td>
+                            <td>Number (Angka)</td>
+                        </tr>
+                        <tr>
+                            <td>tinggi</td>
+                            <td>170</td>
+                            <td>Number (Angka)</td>
+                        </tr>
+                        <tr>
+                            <td>aktif</td>
+                            <td>true</td>
+                            <td>Boolean (Benar/Salah)</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="qa-card">
+                <div class="question">2. Kesimpulan Jenis Data</div>
+                <div class="answer-box">
+                    <span class="answer-label">Jawaban Saya:</span>
+                    <p>Data yang ditulis menggunakan tanda kutip seperti <code>"Andi"</code> merupakan data: <strong>String (Teks)</strong>.</p>
+                    <p style="margin-top: 8px;">Sedangkan angka seperti <code>17</code> merupakan data: <strong>Number (Angka/Numeric)</strong>.</p>
+                </div>
+            </div>
+
+            <!-- J. AKTIVITAS 6 -->
+            <h2>J. Aktivitas 6 - Mengenal let dan const</h2>
+            <div class="qa-card">
+                <div class="question">1. Apa yang terjadi pada contoh kode <code>const</code>?</div>
+                <div class="answer-box">
+                    <span class="answer-label">Jawaban Saya:</span>
+                    Terjadi kesalahan/error (<code>TypeError: Assignment to constant variable.</code>) karena nilai variabel yang dibuat dengan <code>const</code> tidak bisa diubah nilainya.
+                </div>
+            </div>
+            <div class="qa-card">
+                <div class="question">2. Kesimpulan Sementara <code>let</code> vs <code>const</code></div>
+                <div class="answer-box">
+                    <span class="answer-label">Tabel Perbandingan:</span>
+                    <table>
+                        <tr>
+                            <th>Keyword</th>
+                            <th>Nilai dapat diubah?</th>
+                            <th>Kegunaan sederhana</th>
+                        </tr>
+                        <tr>
+                            <td><code>let</code></td>
+                            <td>Ya</td>
+                            <td>Untuk menyimpan data yang nilainya fleksibel / masih mungkin berubah.</td>
+                        </tr>
+                        <tr>
+                            <td><code>const</code></td>
+                            <td>Tidak</td>
+                            <td>Untuk menyimpan data tetap / konstan yang tidak perlu diubah.</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- L. AKTIVITAS 8 -->
+            <h2>L. Aktivitas 8 - Mana Yang Benar?</h2>
+            <div class="qa-card">
+                <div class="question">1. Analisis Aturan Penamaan Variable</div>
+                <div class="answer-box">
+                    <span class="answer-label">Hasil Penilaian:</span>
+                    <table>
+                        <tr>
+                            <th>No.</th>
+                            <th>Nama Variable</th>
+                            <th>Valid (v / x)</th>
+                        </tr>
+                        <tr><td>1</td><td>nama</td><td>v</td></tr>
+                        <tr><td>2</td><td>namaSiswa</td><td>v</td></tr>
+                        <tr><td>3</td><td>nama_siswa</td><td>v</td></tr>
+                        <tr><td>4</td><td>2nama</td><td>x (Sebab diawali angka)</td></tr>
+                        <tr><td>5</td><td>nama siswa</td><td>x (Sebab memakai spasi)</td></tr>
+                        <tr><td>6</td><td>nilaiAkhir</td><td>v</td></tr>
+                        <tr><td>7</td><td>nilai1</td><td>v</td></tr>
+                        <tr><td>8</td><td>nilai-akhir</td><td>x (Sebab memakai tanda hubung -)</td></tr>
+                        <tr><td>9</td><td>Alamat</td><td>v</td></tr>
+                        <tr><td>10</td><td>alamatSiswa</td><td>v</td></tr>
+                    </table>
+                </div>
+            </div>
+            <div class="qa-card">
+                <div class="question">2. Perbaiki nama variable yang salah:</div>
+                <div class="answer-box">
+                    <span class="answer-label">Jawaban Perbaikan:</span>
+                    <p>• <code>2nama</code> &rarr; Menjadi: <code>nama2</code> atau <code>duaNama</code></p>
+                    <p>• <code>nama siswa</code> &rarr; Menjadi: <code>namaSiswa</code> atau <code>nama_siswa</code></p>
+                    <p>• <code>nilai-akhir</code> &rarr; Menjadi: <code>nilaiAkhir</code> atau <code>nilai_akhir</code></p>
+                </div>
+            </div>
+
+            <!-- M. AKTIVITAS 9 -->
+            <h2>M. Aktivitas 9 - Tantangan Data Diri</h2>
+            <div class="qa-card">
+                <div class="question">Kode JavaScript Data Diri Minimal 5 Variabel</div>
+                <div class="answer-box">
+                    <span class="answer-label">Kode Program:</span>
+                    <pre>let nama = "Fiquy McQueen";
+let kelas = "X PPLG 1";
+let jurusan = "Pengembangan Perangkat Lunak dan Gim";
+let umur = 16;
+let hobi = "Balap & Coding Kecepatan Tinggi";
+
+console.log(nama);
+console.log(kelas);
+console.log(jurusan);
+console.log(umur);
+console.log(hobi);</pre>
+                </div>
+            </div>
+
+            <!-- N. AKTIVITAS 10 -->
+            <h2>N. Aktivitas 10 - Tantangan Level 2</h2>
+            <div class="qa-card">
+                <div class="question">1. Program Menyimpan Data Nilai Siswa</div>
+                <div class="answer-box">
+                    <span class="answer-label">Kode Program:</span>
+                    <pre>let nama = "Andi";
+let bahasaIndonesia = 80;
+let matematika = 85;
+let produktif = 90;
+
+console.log(nama);
+console.log(bahasaIndonesia);
+console.log(matematika);
+console.log(produktif);</pre>
+                </div>
+            </div>
+            <div class="qa-card">
+                <div class="question">2. Analisis Variabel dan Tipe Data</div>
+                <div class="answer-box">
+                    <p>• <strong>Berapa variable yang kamu buat?</strong> 4 variable.</p>
+                    <p style="margin-top: 6px;">• <strong>Mana variable yang menyimpan teks?</strong> Variable <code>nama</code>.</p>
+                    <p style="margin-top: 6px;">• <strong>Mana variable yang menyimpan angka?</strong> Variable <code>bahasaIndonesia</code>, <code>matematika</code>, dan <code>produktif</code>.</p>
+                </div>
+            </div>
+
+            <!-- O. AKTIVITAS 11 -->
+            <h2>O. Aktivitas 11 - Debugging</h2>
+            <div class="qa-card">
+                <div class="question">1. Program yang Sudah Diperbaiki</div>
+                <div class="answer-box">
+                    <span class="answer-label">Kode Hasil Perbaikan:</span>
+                    <pre>let namaSiswa = "Budi";
+let umur = 16;
+let kelas2 = "XI RPL";
+
+console.log(namaSiswa);
+console.log(umur);
+console.log(kelas2);</pre>
+                </div>
+            </div>
+            <div class="qa-card">
+                <div class="question">2. Kesalahan yang Ditemukan</div>
+                <div class="answer-box">
+                    <p>1. Nama variabel <code>nama siswa</code> menggunakan spasi (harusnya digabung menjadi <code>namaSiswa</code>).</p>
+                    <p style="margin-top: 6px;">2. Nama variabel <code>2kelas</code> diawali oleh angka (harusnya angka diletakkan di akhir, misal <code>kelas2</code>).</p>
+                    <p style="margin-top: 6px;">3. Penggunaan tanda petik yang tidak konsisten pada string <code>'Budi";</code> (harus seragam <code>"Budi"</code>).</p>
+                </div>
+            </div>
+
+            <!-- P. AKTIVITAS 12 -->
+            <h2>P. Aktivitas 12 - Challenge Profil Siswa</h2>
+            <div class="qa-card">
+                <div class="question">1. Program Profil Siswa & Pengembangan 2 Variabel Baru</div>
+                <div class="answer-box">
+                    <span class="answer-label">Kode Program Lengkap:</span>
+                    <pre>const nama = "Fiquy McQueen";
+const kelas = "X PPLG 1";
+const jurusan = "Pengembangan Perangkat Lunak dan Gim";
+const umur = 16;
+const kota = "Radiator Springs";
+const hobi = "Balap Mobil & Koding Cepat";
+const citaCita = "Pembalap & Master Developer";
+
+// 2 Variable Tambahan Baru:
+const nomorMobil = 95;
+const statusPemenang = true;
+
+console.log(nama);
+console.log(kelas);
+console.log(jurusan);
+console.log(umur);
+console.log(kota);
+console.log(hobi);
+console.log(citaCita);
+console.log(nomorMobil);
+console.log(statusPemenang);</pre>
+                </div>
+            </div>
+
+            <!-- Q. AKTIVITAS 13 -->
+            <h2>Q. Aktivitas 13 - Think Pair Share</h2>
+            <div class="qa-card">
+                <div class="question">1. Think (Mengapa programmer membutuhkan variable?)</div>
+                <div class="answer-box">
+                    Programmer membutuhkan variabel untuk menyimpan data sementara dalam memori komputer agar data tersebut dapat diakses, dikelola, dan diganti dengan mudah di seluruh bagian program tanpa harus menuliskan nilainya secara manual berulang kali.
+                </div>
+            </div>
+            <div class="qa-card">
+                <div class="question">2. Pair & Share</div>
+                <div class="answer-box">
+                    <p>• <strong>Bandingkan jawabanmu dengan teman (Apakah sama?):</strong> Ya, mayoritas sama.</p>
+                    <p style="margin-top: 6px;">• <strong>Kesimpulan Kelompok:</strong> Variabel sangat penting dalam pemrograman sebagai tempat penampungan data dinamis yang fleksibel, mempermudah pengorganisasian kode, dan menghindari duplikasi data.</p>
+                </div>
+            </div>
+
+            <!-- R. REFLEKSI -->
+            <h2>R. Refleksi Pemahaman</h2>
+            <div class="qa-card">
+                <div class="question">Tabel Pemahaman Materi</div>
+                <div class="answer-box">
+                    <table>
+                        <tr>
+                            <th>Pernyataan</th>
+                            <th>Status Pemahaman</th>
+                        </tr>
+                        <tr>
+                            <td>Saya memahami pengertian variable</td>
+                            <td><strong style="color: #ef4444;">✔ Paham</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Saya dapat membuat variable dengan <code>let</code></td>
+                            <td><strong style="color: #ef4444;">✔ Paham</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Saya memahami penggunaan <code>const</code></td>
+                            <td><strong style="color: #ef4444;">✔ Paham</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Saya dapat menyimpan data ke dalam variable</td>
+                            <td><strong style="color: #ef4444;">✔ Paham</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Saya dapat menampilkan variable dengan <code>console.log()</code></td>
+                            <td><strong style="color: #ef4444;">✔ Paham</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Saya dapat memberikan nama variable dengan benar</td>
+                            <td><strong style="color: #ef4444;">✔ Paham</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Saya dapat menemukan kesalahan variable</td>
+                            <td><strong style="color: #ef4444;">✔ Paham</strong></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- S. REFLEKSI 3-2-1 -->
+            <h2>S. Refleksi 3-2-1</h2>
+            <div class="qa-card">
+                <div class="question">Analisis Diri:</div>
+                <div class="answer-box">
+                    <p><strong>3 Hal yang Saya Pelajari:</strong></p>
+                    <p>1. Pengertian variabel sebagai wadah penyimpanan data sementara di memori.</p>
+                    <p>2. Perbedaan kata kunci <code>let</code> (nilainya fleksibel) dan <code>const</code> (bernilai tetap).</p>
+                    <p>3. Aturan penamaan variabel yang valid (tidak boleh diawali angka, spasi, atau karakter khusus terlarang).</p>
+                    <br>
+                    <p><strong>2 Hal yang Masih Membingungkan:</strong></p>
+                    <p>1. Penanganan error ketika tipe data teks (string) dan angka (number) dioperasikan secara tidak sengaja.</p>
+                    <p>2. Konsep pemanggilan variabel di scope/fungsi JS yang lebih kompleks.</p>
+                    <br>
+                    <p><strong>1 Hal yang Ingin Saya Coba:</strong></p>
+                    <p>1. Membuat web interaktif yang dapat merespons data input pengguna secara real-time.</p>
+                </div>
+            </div>
+
+            <!-- T. KESIMPULAN -->
+            <h2>T. Kesimpulan</h2>
+            <div class="qa-card">
+                <div class="question">Rangkuman Materi:</div>
+                <div class="answer-box">
+                    <p>• <strong>Variable adalah:</strong> Wadah atau tempat di dalam memori komputer yang digunakan untuk menyimpan data/informasi.</p>
+                    <p style="margin-top: 6px;">• <strong><code>let</code> digunakan untuk:</strong> Mendeklarasikan variabel yang nilainya dapat diubah/diperbarui.</p>
+                    <p style="margin-top: 6px;">• <strong><code>const</code> digunakan untuk:</strong> Mendeklarasikan variabel yang nilainya bersifat tetap (konstan) dan tidak bisa diubah.</p>
+                    <p style="margin-top: 6px;">• <strong>Untuk menampilkan isi variable ke Console kita dapat menggunakan:</strong> <code>console.log()</code></p>
+                </div>
+            </div>
+
+            <!-- U. TUGAS INDIVIDU -->
+            <h2>U. Tugas Individu - Data Produk Sederhana</h2>
+            <div class="qa-card">
+                <div class="question">Program JavaScript Data Produk (Minimal 6 Variabel)</div>
+                <div class="answer-box">
+                    <span class="answer-label">Kode Program:</span>
+                    <pre>const namaProduk = "Piston Cup Turbo Booster";
+const kategori = "Aksesori Balap";
+const harga = 750000;
+let stok = 20;
+const merek = "Rust-eze Racing";
+const tersedia = true;
+
+console.log(namaProduk);
+console.log(kategori);
+console.log(harga);
+console.log(stok);
+console.log(merek);
+console.log(tersedia);</pre>
+                </div>
+            </div>
+
+            <!-- Y. EXIT TICKET -->
+            <h2>Y. Exit Ticket</h2>
+            <div class="qa-card">
+                <div class="question">Pertanyaan Penutup Sebelum Mengakhiri Kelas:</div>
+                <div class="answer-box">
+                    <p><strong>1. Apa itu variable?</strong> Wadah/tempat di dalam memori komputer yang digunakan untuk menyimpan data atau informasi.</p>
+                    <p style="margin-top: 8px;"><strong>2. Apa perbedaan <code>let</code> dan <code>const</code>?</strong> Nilai pada <code>let</code> dapat diubah/diperbarui, sedangkan nilai pada <code>const</code> bersifat tetap (konstan) dan tidak dapat diubah.</p>
+                    <p style="margin-top: 8px;"><strong>3. Tuliskan satu contoh variable JavaScript:</strong> <code>let namaSiswa = "Budi";</code></p>
+                </div>
+            </div>
+
+            <!-- Z. PESAN UNTUK PESERTA DIDIK -->
+            <h2>Z. Pesan Untuk Peserta Didik</h2>
+            <div class="qa-card mcqueen-quote">
+                <div class="question" style="color: #ef4444;">🏁 Catatan Motivasi Lightning McQueen:</div>
+                <div class="answer-box" style="background-color: #ffffff;">
+                    <p> Kecepatan itu penting, tapi ketelitian di tikungan kode program adalah segalanya.</p>
+                    <p> Jangan takut mengalami mogok atau error saat ngoding.</p>
+                    <p> Anggap error sebagai pit-stop untuk memperbaiki performa mesinmu.</p>
+                    <br>
+                    <p style="color: #1d4ed8; font-weight: 600;"><em>"Speed. I am speed. (Fokus, teliti, dan jadilah programmer tercepat di lintasan kode!) Ka-Chow!"</em></p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer">
+            &copy; 2026 - Piston Cup Coding Academy (Ka-Chow!)
+        </div>
+    </div>
+
+    <script>
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        const today = new Date();
+        document.getElementById('current-date').innerText = today.toLocaleDateString('id-ID', options);
+    </script>
+
+</body>
+</html>
